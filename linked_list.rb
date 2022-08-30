@@ -8,6 +8,7 @@ class LinkedList
     new_node = Node.new
     new_node.value = value
     @head = new_node if @head == nil # if list is empty
+    @tail.next_node = new_node unless @tail == nil
     @tail = new_node
   end
 
@@ -50,8 +51,8 @@ class Node
 end
 
 list = LinkedList.new
-list.prepend(5)
-list.prepend(4)
-list.prepend(3)
-list.prepend(8)
+list.append(5)
+list.append(4)
+list.append(3)
+list.append(8)
 p list.size
