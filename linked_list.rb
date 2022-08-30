@@ -20,7 +20,15 @@ class LinkedList
   end
 
   def size
+    # needs to traverse through the linked list.
+    count = 0
+    current_node = @head
 
+    while current_node != nil
+      current_node = current_node.next_node
+      count += 1
+    end
+    count
   end
 
   def head
@@ -42,6 +50,8 @@ class Node
 end
 
 list = LinkedList.new
-list.append(5)
+list.prepend(5)
 list.prepend(4)
-p list.tail
+list.prepend(3)
+list.prepend(8)
+p list.size
