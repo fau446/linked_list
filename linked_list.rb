@@ -21,7 +21,6 @@ class LinkedList
   end
 
   def size
-    # needs to traverse through the linked list.
     count = 0
     current_node = @head
 
@@ -39,6 +38,19 @@ class LinkedList
   def tail
     @tail
   end
+
+  def at(index)
+    current_index = 0
+    current_node = @head
+
+    while current_node != nil
+      return current_node.value if current_index == index
+      current_node = current_node.next_node
+      current_index += 1
+    end
+
+    puts "There is no value at index #{index}."
+  end
 end
 
 class Node
@@ -51,8 +63,5 @@ class Node
 end
 
 list = LinkedList.new
-list.append(5)
-list.append(4)
-list.append(3)
-list.append(8)
-p list.size
+
+p list.at(8)
