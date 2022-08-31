@@ -55,8 +55,8 @@ class LinkedList
   def pop
     return if @tail == nil
     to_return = @tail
-    # list size is 1?
     size = self.size
+
     if size == 1
       @tail = nil
     else
@@ -64,8 +64,20 @@ class LinkedList
       @tail.next_node = nil
     end
 
-
     to_return
+  end
+
+  def contains?(value)
+    current_index = 0
+    current_node = @head
+
+    while current_node != nil
+      return true if current_node.value == value
+      current_node = current_node.next_node
+      current_index += 1
+    end
+
+    false
   end
 end
 
@@ -79,3 +91,8 @@ class Node
 end
 
 list = LinkedList.new
+list.append(5)
+list.append(8)
+list.append(10)
+list.prepend(1)
+p list.contains?(12)
