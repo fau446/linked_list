@@ -92,6 +92,21 @@ class LinkedList
 
     nil
   end
+
+  def to_s 
+    current_index = 0
+    current_node = @head
+    to_return = ""
+
+    while current_node != nil
+      to_return.concat("( #{current_node.value} ) -> ")
+      current_node = current_node.next_node
+      current_index += 1
+    end
+    
+    to_return.concat('nil')
+    puts to_return
+  end
 end
 
 class Node
