@@ -79,6 +79,19 @@ class LinkedList
 
     false
   end
+
+  def find(value) # returns the index containing the value, nil otherwise
+    current_index = 0
+    current_node = @head
+
+    while current_node != nil
+      return current_index if current_node.value == value
+      current_node = current_node.next_node
+      current_index += 1
+    end
+
+    nil
+  end
 end
 
 class Node
@@ -91,8 +104,3 @@ class Node
 end
 
 list = LinkedList.new
-list.append(5)
-list.append(8)
-list.append(10)
-list.prepend(1)
-p list.contains?(12)
