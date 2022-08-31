@@ -7,7 +7,7 @@ class LinkedList
   def append(value)
     new_node = Node.new
     new_node.value = value
-    @head = new_node if @head == nil # if list is empty
+    @head = new_node if @head == nil
     @tail.next_node = new_node unless @tail == nil
     @tail = new_node
   end
@@ -17,7 +17,7 @@ class LinkedList
     new_node.value = value
     new_node.next_node = @head
     @head = new_node
-    @tail = new_node if @tail == nil # if list is empty
+    @tail = new_node if @tail == nil
   end
 
   def size
@@ -44,12 +44,28 @@ class LinkedList
     current_node = @head
 
     while current_node != nil
-      return current_node.value if current_index == index
+      return current_node if current_index == index
       current_node = current_node.next_node
       current_index += 1
     end
 
-    puts "There is no value at index #{index}."
+    # puts "There is no node at index #{index}."
+  end
+
+  def pop
+    return if @tail == nil
+    to_return = @tail
+    # list size is 1?
+    size = self.size
+    if size == 1
+      @tail = nil
+    else
+      @tail = self.at(size - 2)
+      @tail.next_node = nil
+    end
+
+
+    to_return
   end
 end
 
@@ -63,5 +79,3 @@ class Node
 end
 
 list = LinkedList.new
-
-p list.at(8)
