@@ -107,6 +107,23 @@ class LinkedList
     to_return.concat('nil')
     puts to_return
   end
+
+  def insert_at(value, index)
+    return 'Invalid index' if index > self.size || index < 0
+    
+    if index == 0
+      self.prepend(value)
+    elsif index == self.size
+      self.append(value)
+    else
+      new_node = Node.new
+      new_node.value = value
+      previous_node = self.at(index - 1)
+      new_next_node = self.at(index)
+      previous_node.next_node = new_node
+      new_node.next_node = new_next_node
+    end
+  end
 end
 
 class Node
