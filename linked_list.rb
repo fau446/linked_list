@@ -58,6 +58,7 @@ class LinkedList
     size = self.size
 
     if size == 1
+      @head = nil
       @tail = nil
     else
       @tail = self.at(size - 2)
@@ -110,7 +111,7 @@ class LinkedList
 
   def insert_at(value, index)
     return 'Invalid index' if index > self.size || index < 0
-    
+
     if index == 0
       self.prepend(value)
     elsif index == self.size
@@ -124,6 +125,23 @@ class LinkedList
       new_node.next_node = new_next_node
     end
   end
+
+  def remove_at(index)
+    return 'Invalid index' if index > self.size - 1 || index < 0
+    return 'Cannot use remove_at on empty list' if @head == nil
+
+    if index == self.size - 1
+      return self.pop
+    elsif index == 0
+      next_node = @head.next_node # next node can be nil
+      return self.pop if next_node == nil # only one element
+      @head = next_node
+    else
+      current_node = self.at(index)
+      previous_node = self.at(index - 1)
+      previous_node.next_node = current_node.next_node
+    end
+  end
 end
 
 class Node
@@ -135,4 +153,3 @@ class Node
   end
 end
 
-list = LinkedList.new
